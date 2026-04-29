@@ -8,3 +8,6 @@ sub,1000,392 = 608
 sum,1000,392 = 1392
 2026-04-28T11:42:14.445082 - alvaro.m.castanheira - div,100,30 = 3.3333333333333335
 2026-04-28T11:42:23.869170 - alvaro.m.castanheira - mul,1341234,23423423 = 31416291323982
+2026-04-29T12:19:45.094227 - alvaro.m.castanheira - sum,8,2 = 10
+2026-04-29T12:20:42.179138 - alvaro.m.castanheira - sum,8,2 = 10
+2026-04-29T12:20:59.795258 - alvaro.m.castanheira - sum,22,19 = 41

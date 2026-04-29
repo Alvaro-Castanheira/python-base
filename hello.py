@@ -33,7 +33,14 @@ arguments = {
 
 for arg in sys.argv[1:]:
     # TODO: Tratar ValueError
-    key, value = arg.split("=")
+    try:
+        key, value = arg.split("=")
+    except ValueError as e:
+        # TODO: Logging
+        print(f"[Error] {str(e)}")
+        print("Usage: '--key=value'")
+        sys.exit(1)
+        
     key = key.lstrip("-").strip()
     value = value.strip()
     if key not in arguments:
@@ -57,8 +64,6 @@ current_language = current_language[:5]
 # sets(Hash table) - O(1) - constante
 # dicts(hash table) - O(1)
 
-#msg  = "Hello, World!"
-
 msg = {
     "en_US": "Hello World!",
     "pt_PT": "Olá, Mundo!",
@@ -67,17 +72,15 @@ msg = {
     "fr_FR": "Bonjor Monde",
 }
 
-# Ordem de complexiade deste algoritmo O(n) sendo o n o número de testes feito
-# if current_language == "pt_PT":
-#     msg = "Olá, Mundo!"
-# elif current_language == "it_IT":
-#     msg = "Ciao, Mondo!"
-# elif current_language == "es_SP":
-#     msg = "Hola, Mundo!"
-# elif current_language == "fr_FR":
-#     msg = "Bonjor Monde!"    
+# EAFP
+try:
+    message = msg[current_language]
+except KeyError as e:
+    print(f"[Error] {str(e)} ")
+    print(f"Language is invalid, chosse from: {list(msg.keys())}")
+    sys.exit(1)
 
 
 print(
-    msg[current_language] * int(arguments["count"])
-    ) 
+    message * int(arguments["count"])
+) 
