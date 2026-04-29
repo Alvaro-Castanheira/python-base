@@ -5,18 +5,24 @@ __version__ = "0.1.0"
 
 import sys
 import os
-# LBYL - Look Before you Leap
-if os.path.exists("names.txt"):
-    print("The file exists")
-    input("...") # Race Condition
-    names = open("names.txt").readlines()
-else:
-    print("[Error] File names.txt not found.")
-    sys.exit(1)
 
-# LBYL - Look Before you Leap
-if len(names) >= 3:
-    print(names[2])
+# EAFP - Easy to Ask Forgiveness than permission
+try:
+    names = open("names.txt").readlines() # FileNotFoundError
+    # 1 / 1 # ZeroDivisionError
+    # print(names.append) # AttributeError
+except FileNotFoundError as e:
+    print(f"{str(e)}.")
+    sys.exit(1)
+    # TODO: Usar retry
 else:
+    print("Success")
+finally:
+    print("Always executes")
+
+
+try:
+    print(names[0])
+except:
     print("[Error] Missing name in the list")
     sys.exit(1)
